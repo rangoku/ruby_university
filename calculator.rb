@@ -5,10 +5,10 @@ loop do
     numbers.push(gets.to_i)
   end
 
-  puts "Select operation:"
+  puts "Select operation(+;-;*;/):"
 
   begin
-    res = case gets.delete"\n"
+    res = case gets.chomp
           when "+" then numbers.reduce(:+)
           when "-" then numbers.reduce(:-)
           when "*" then numbers.reduce(:*)
