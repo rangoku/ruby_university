@@ -3,7 +3,7 @@ misses = 0
 
 puts 'Enter word: '
 WORD = gets.chomp
-word = WORD.clone
+remaining = WORD.clone
 guessed_letters = Array.new(WORD.length, nil)
 
 loop do
@@ -16,8 +16,13 @@ loop do
 
   indexes = (0 ... WORD.length).find_all { |i| WORD[i, 1] == letter }
   if indexes.length > 0
-    word.tr! letter, ''
+    remaining.tr! letter, ''
     indexes.each { |i| guessed_letters[i] = letter }
+
+    if remaining.length == 0
+      puts 'You win!'
+      exit
+    end
   else
     misses += 1
     puts "Misses: #{misses} / #{MAX_MISS_COUNT}"
