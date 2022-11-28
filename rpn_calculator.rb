@@ -19,8 +19,6 @@ class RPN
     operands = []
     tokens = expr.to_s.split ' '
 
-    rpn = []
-
     for token in tokens
 
       if !(PRIORITIES.keys.include? token) and token != '(' and token != ')'
@@ -57,7 +55,7 @@ class RPN
       end
     end
 
-    [values, operands, rpn]
+    values.last
   end
 
   public
@@ -68,8 +66,6 @@ class RPN
       return false
     end
   end
-
-  RPN = ''
 
   private
   def eval_next(values, op)
